@@ -3,6 +3,14 @@ import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { errorHandler } from '../utils/error.js';
 
+export const signout = async (req, res, next) => {
+  try {
+    res.clearCookie('access_token').status(200).json('Signout success!');
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const google = async (req, res, next) => {
   let { email, name: username, photo } = req.body;
   try {
